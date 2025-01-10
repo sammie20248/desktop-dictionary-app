@@ -54,7 +54,7 @@ def german_dictionary_app():
 
         if not suggestions:
             suggestion_listbox.place_forget()
-            feedback_label.config(text = "No suggestions found", fg = "red")
+            feedback_label.config(text = "Not found", fg = "red")
         else:
             suggestion_listbox.place(x = entry_box.winfo_x(), y = entry_box.winfo_y() + 30)
             feedback_label.config(text = f"{len(suggestions)} suggestions found", fg = "blue")
@@ -85,7 +85,7 @@ def german_dictionary_app():
 
 
     entry_text.trace("w", autocomplete)
-    title_label = Label(window, text = "german Dictionary", font = ("Helvetica", 18, "bold"), fg = "red")
+    title_label = Label(window, text = "german Dictionary", font = ("Helvetica", 15, "bold"), fg = "red")
     title_label.pack(pady = 10)
 
 
@@ -114,17 +114,6 @@ def german_dictionary_app():
         font = ("helvetica", 12),
         command = lambda: search(entry_text.get())
     )
-    search_btn.grid(row = 0, column = 0, padx = 5)
-
-    refresh_button = Button(
-        button_frame,
-        text = "Refresh",
-        font = ("helvetica", 12),
-        command = clear
-    )
-    refresh_button.grid(row = 0, column = 2, padx = 5)
-
+    search_btn.grid(row = 1, column = 1, padx = 5)
     window.mainloop()
-
-
 german_dictionary_app()
