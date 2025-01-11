@@ -1,52 +1,65 @@
-from japanese import japanese_dictionary_app
-from german import german_dictionary_app
-from italian import italian_dictionary_app
+
+from tkinter import *
+from spanish import spanish_dictionary_app  
+from Italian import  Italian_dictionary_app  
+from french import french_dictionary_app  
+from german import german_dictionary_app  
+from japanese import japanese_dictionary_app  
+
 
 def main():
-    combined_dictionary = {}
+    
+    window = Tk()
+    window.title("Multilingual Dictionary")
+    window.geometry("600x550")
+    window.config(bg="#f5f5f5")  
 
-    while True:
-        print("\nWelcome to this Multi-Lingual Dictionary!")
-        print("Select a dictionary:")
-        print("1. Japanese")
-        print("2. German")
-        print("3. Italian")
-        print("4. Spanish (coming soon)")
-        print("5. French (coming soon)")
-        print("6. Exit")
+    
+    window.eval('tk::PlaceWindow . center')
 
-        choice = input("Enter your choice (1-6): ")
+    
+    title_label = Label(window, text="Multilingual Dictionary", font=("Arial", 25, "bold"), bg="#f5f5f5", fg= "black")
+    title_label.pack(pady=20)
 
-        if choice == "1":
-            print("\nYou selected Japanese.")
-            japanese_data = japanese_dictionary_app()  
-            combined_dictionary.update(japanese_data)  
+    
+    subtitle_label = Label(window, text="Select a dictionary to Explore!", font=("Arial", 14), bg="#f5f5f5", fg="black")
+    subtitle_label.pack(pady=10)
 
-        elif choice == "2":
-            print("\nYou selected German.")
-            german_data = german_dictionary_app()  
-            combined_dictionary.update(german_data)  
+    
+    feedback_label = Label(window, text="", font=("Arial", 12), bg="#f5f5f5", fg="red")
+    feedback_label.pack(pady=10)
 
-        elif choice == "3":
-            print("\nYou selected Italian.")
-            italian_data = italian_dictionary_app()  
-            combined_dictionary.update(italian_data)  
+    
+    def open_dictionary(dictionary_app, name):
+        try:
+            feedback_label.config(text=f"Opening {name} Dictionary...")
+            window.withdraw()  
+            dictionary_app()  
+            window.deiconify()  
+        except Exception as e:
+            feedback_label.config(text=f"Error: {e}")
 
-        elif choice == "4":
-            print("Sorry, the Spanish dictionary is not available yet. Coming soon!")
+    
+    Button(window, text="Spanish Dictionary", font=("Arial", 14), bg="#4b0082", fg="white", width=25,
+           command=lambda: open_dictionary(spanish_dictionary_app, "Spanish")).pack(pady=10)
 
-        elif choice == "5":
-            print("Sorry, the French dictionary is not available yet. Coming soon!")
+    Button(window, text="german Dictionary", font=("Arial", 14), bg="#4b0082", fg="white", width=25,
+           command=lambda: open_dictionary(german_dictionary_app, "german")).pack(pady=10)
 
-        elif choice == "6":
-            print("You are exiting the program now!")
-            print("\nFinal Combined Dictionary:")
-            for key, value in combined_dictionary.items():
-                print(f"{key}: {value}")
-            break
+    Button(window, text=" Italian Dictionary", font=("Arial", 14), bg="#4b0082", fg="white", width=25,
+           command=lambda: open_dictionary(  Italian_dictionary," Italian")).pack(pady=10)
 
-        else:
-            print("Invalid input. Please try again.")
+    Button(window, text="french Dictionary", font=("Arial", 14), bg="#4b0082", fg="white", width=25,
+           command=lambda: open_dictionary(french_dictionary_app, "french")).pack(pady=10)
+
+    Button(window, text="Japanese Dictionary", font=("Arial", 14), bg="#4b0082", fg="white", width=25,
+           command=lambda: open_dictionary(japanese_app, "Japanese")).pack(pady=10)
+
+    
+    Button(window, text="Exit", font=("Arial", 14), bg="#dc143c", fg="white", width=25, command=window.destroy).pack(pady=20)
+
+    
+    window.mainloop()
 
 
 if __name__ == "__main__":
