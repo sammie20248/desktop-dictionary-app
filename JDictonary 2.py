@@ -1,4 +1,4 @@
-from tkinter import Tk, Entry, Button, Label, StringVar
+from tkinter import Tk, Entry, Button, Label, StringVar, Toplevel
 
 def italian_dictionary_app():
     window = Tk()
