@@ -1,32 +1,53 @@
 from japanese import japanese_dictionary_app
+from german import german_dictionary_app
+from italian import italian_dictionary_app
+
 def main():
+    combined_dictionary = {}
+
     while True:
-        print("\nWelcome to this Multi_lingual Dictionary!")
+        print("\nWelcome to this Multi-Lingual Dictionary!")
         print("Select a dictionary:")
-        print("1. japanese")
-        print("2. spanish (coming soon)")
-        print("3. french (coming soon)")
-        print("4. italian (coming soon)")
-        print("5. german (coming soon)")
+        print("1. Japanese")
+        print("2. German")
+        print("3. Italian")
+        print("4. Spanish (coming soon)")
+        print("5. French (coming soon)")
         print("6. Exit")
 
-        choice = input("Enter your choice from (1-6): ")
+        choice = input("Enter your choice (1-6): ")
 
         if choice == "1":
-            japanese_dictionary_app()
+            print("\nYou selected Japanese.")
+            japanese_data = japanese_dictionary_app()  
+            combined_dictionary.update(japanese_data)  
+
         elif choice == "2":
-            print("sorry,The spanish dictionary is not available yet.")
+            print("\nYou selected German.")
+            german_data = german_dictionary_app()  
+            combined_dictionary.update(german_data)  
+
         elif choice == "3":
-            print("sorry,The french dictionary is not available yet.")
+            print("\nYou selected Italian.")
+            italian_data = italian_dictionary_app()  
+            combined_dictionary.update(italian_data)  
+
         elif choice == "4":
-            print("sorry,The italian dictionary is not available yet.")
+            print("Sorry, the Spanish dictionary is not available yet. Coming soon!")
+
         elif choice == "5":
-            print(" sorry,The german dictionary is not available yet.")
+            print("Sorry, the French dictionary is not available yet. Coming soon!")
+
         elif choice == "6":
-            print("you are Exiting the program now!")
+            print("You are exiting the program now!")
+            print("\nFinal Combined Dictionary:")
+            for key, value in combined_dictionary.items():
+                print(f"{key}: {value}")
             break
+
         else:
-            print("Invalid ,Please try again.")
-# main program
-if __name__ == "__main_":
+            print("Invalid input. Please try again.")
+
+
+if __name__ == "__main__":
     main()
